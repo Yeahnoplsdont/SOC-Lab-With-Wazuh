@@ -1,1 +1,18 @@
+Day 1
+The first day consisted of learning about Wazuh and setting up the enviroment on my endpoint
+I first Installed VMware Workstation Pro as the hypervisor
+Downloaded Ubuntu Server 24.04 LTS ISO
+Created VM: 2 vCPU, 8GB RAM, 100GB disk
+Installed Ubuntu Server
+enabled OpenSSH during setup
+Connected via SSH from host instead of VMware console to work in the terminal 
+Installed Wazuh via official quick-start script (v4.14)
+Logged into Wazuh dashboard (https://<vm-ip>) with generated admin credentials
 
+Enabled archive logging:
+  -Set logall / logall_json to yes in /var/ossec/etc/ossec.conf
+  -Restarted wazuh-manager
+  -Set archives.enabled: true in /etc/filebeat/filebeat.yml
+  -Restarted filebeat
+  -Created wazuh-archives-4.x index pattern in dashboard, verified events in Discover
+  -Took VMware snapshot ("wazuh configured") as rollback point
