@@ -1,13 +1,13 @@
 Day 1
 The first day consisted of learning about Wazuh and setting up the enviroment on my endpoint
 I first Installed VMware Workstation Pro as the hypervisor
-Downloaded Ubuntu Server 24.04 LTS ISO
-Created VM: 2 vCPU, 8GB RAM, 100GB disk
-Installed Ubuntu Server
-enabled OpenSSH during setup
-Connected via SSH from host instead of VMware console to work in the terminal 
-Installed Wazuh via official quick-start script (v4.14)
-Logged into Wazuh dashboard (https://<vm-ip>) with generated admin credentials
+  -Downloaded Ubuntu Server 24.04 LTS ISO
+  -Created VM: 2 vCPU, 8GB RAM, 100GB disk
+  -Installed Ubuntu Server
+  -enabled OpenSSH during setup
+  -Connected via SSH from host instead of VMware console to work in the terminal 
+  -Installed Wazuh via official quick-start script (v4.14)
+  -Logged into Wazuh dashboard (https://<vm-ip>) with generated admin credentials
 
 Enabled archive logging:
   -Set logall / logall_json to yes in /var/ossec/etc/ossec.conf
@@ -16,3 +16,13 @@ Enabled archive logging:
   -Restarted filebeat
   -Created wazuh-archives-4.x index pattern in dashboard, verified events in Discover
   -Took VMware snapshot ("wazuh configured") as rollback point
+
+Day 2
+  -Two new VMs stood up: a Windows 10 Pro VM (4GB RAM, 60GB disk, NAT) and an Ubuntu Server VM (4GB RAM, 50GB disk, NAT), both networked to reach the existing Wazuh manager.
+  -RDP enabled on the Windows VM and SSH access confirmed on the Ubuntu VM, giving remote control of both endpoints from the host.
+  -Wazuh agents deployed on both machines Linux and Windows 
+  -Both confirmed "active" in the Wazuh dashboard (Agents list) with correct OS/version metadata.
+  -Sysmon installed on Windows: binary from Microsoft Sysinternals, configured with a community ruleset (Olaf Hartong's config) instead of the default (no) config.
+  -Sysmon-for-Linux installed on Ubuntu: added via the official GitHub repo/apt process, configured with the collect-all ruleset. Logs confirmed landing in /var/log/syslog.
+  -Agent log-forwarding config edited on Windows
+  -Verified end-to-end telemetry: confirmed Sysmon events (event ID 11 file-create events, process telemetry from uname on Linux) appearing in the Wazuh dashboard's Discover view for both agents.
