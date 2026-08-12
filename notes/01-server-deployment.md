@@ -1,8 +1,8 @@
 
-What is a SIEM?
-An Endpoint, firewall, and router all have something in common. That is they all generate logs, a SOC analysts job is to monitor alerts for any indicators of compromise however, the problem is that it is difficult to look at each of those IoT individually, the solution? A SIEM. A SIEM aggregates logs into 1 space so the SOC analyst uses daily to be able to see all the logs in one place.
-
-What is Wazuh?
-Wazuh is a SIEM that monitors endpoints and fires alerts when thresholds are crossed based on rules that are set up.
+What is a SIEM? 
+  -Endpoints, firewalls, and routers all generate logs, and a SOC analyst's job is to catch indicators of compromise (IoCs) in that data. Checking each log source individually doesn't scale. A SIEM solves this by aggregating logs into one place and normalizing them into a common format, correlating events across sources, and applying rules to surface alerts — turning raw log volume into something an analyst can actually act on.
+  
+What is Wazuh? 
+  -Wazuh is an open-source SIEM/XDR platform. Agents installed on endpoints forward log data (event logs, syslog, Sysmon telemetry, etc.) to a central manager, which decodes and matches that data against a rule, some rules match single suspicious events, others fire on frequency/thresholds, and some generate alerts. Beyond core SIEM functions, Wazuh also handles file integrity monitoring (FIM), vulnerability detection, and configuration/compliance assessment.
 
 Day 1 Notes
